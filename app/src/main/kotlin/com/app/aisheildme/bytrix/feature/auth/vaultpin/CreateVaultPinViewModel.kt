@@ -83,8 +83,15 @@ class CreateVaultPinViewModel @Inject constructor(
 
         val pinError = Validators.pin(s.pin)
         val confirmError = Validators.confirmPin(s.confirmPin, s.pin)
-        _uiState.update { it.copy(pinError = pinError, confirmPinError = confirmError) }
-        if (pinError != null || confirmError != null) return
+        val firstError = pinError ?: confirmError
+        _uiState.update {
+            it.copy(
+                pinError = pinError,
+                confirmPinError = confirmError,
+                message = firstError?.let { msg -> UiMessage.error(msg) },
+            )
+        }
+        if (firstError != null) return
 
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }

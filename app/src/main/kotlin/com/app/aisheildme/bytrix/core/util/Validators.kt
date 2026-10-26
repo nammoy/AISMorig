@@ -3,7 +3,6 @@ package com.app.aisheildme.bytrix.core.util
 object Validators {
 
     private val EMAIL_REGEX = Regex("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-    private val PHONE_REGEX = Regex("^\\+?[1-9]\\d{1,14}$")
 
     fun email(value: String?): String? = when {
         value.isNullOrEmpty() -> "Email is required"
@@ -22,8 +21,11 @@ object Validators {
 
     fun phone(value: String?): String? = when {
         value.isNullOrEmpty() -> "Phone number is required"
-        !PHONE_REGEX.matches(value) -> "Please enter a valid phone number"
-        else -> null
+        else -> {
+            val digitsOnly = value.replace(Regex("[^0-9+]"), "")
+            if (digitsOnly.length in 7..15) null
+            else "Please enter a valid phone number"
+        }
     }
 
     fun confirmPassword(value: String?, password: String): String? = when {

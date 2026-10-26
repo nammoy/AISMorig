@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
+import com.app.aisheildme.bytrix.core.common.UiMessage
+
 data class SignupUiState(
     val firstName: String = "",
     val lastName: String = "",
@@ -20,6 +22,7 @@ data class SignupUiState(
     val emailError: String? = null,
     val passwordError: String? = null,
     val confirmPasswordError: String? = null,
+    val message: UiMessage? = null,
 ) {
     val isValid: Boolean
         get() = firstName.isNotBlank() && lastName.isNotBlank() && email.isNotBlank() &&
@@ -39,6 +42,8 @@ class SignupViewModel @Inject constructor() : ViewModel() {
     fun onConfirmPasswordChange(v: String) =
         _uiState.update { it.copy(confirmPassword = v, confirmPasswordError = null) }
 
+    fun onMessageShown() = _uiState.update { it.copy(message = null) }
+
     fun validateAndCollect(): SignupAccount? {
         val s = _uiState.value
         val firstNameError = Validators.required(s.firstName.trim(), "First name")
@@ -47,6 +52,8 @@ class SignupViewModel @Inject constructor() : ViewModel() {
         val passwordError = Validators.password(s.password)
         val confirmError = Validators.confirmPassword(s.confirmPassword, s.password)
 
+        val firstError = firstNameError ?: lastNameError ?: emailError ?: passwordError ?: confirmError
+
         _uiState.update {
             it.copy(
                 firstNameError = firstNameError,
@@ -54,12 +61,11 @@ class SignupViewModel @Inject constructor() : ViewModel() {
                 emailError = emailError,
                 passwordError = passwordError,
                 confirmPasswordError = confirmError,
+                message = firstError?.let { msg -> UiMessage.error(msg) },
             )
         }
 
-        val ok = listOf(firstNameError, lastNameError, emailError, passwordError, confirmError)
-            .all { it == null }
-        if (!ok) return null
+        if (firstError != null) return null
 
         return SignupAccount(
             firstName = s.firstName.trim(),

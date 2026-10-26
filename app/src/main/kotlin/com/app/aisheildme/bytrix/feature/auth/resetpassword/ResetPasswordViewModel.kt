@@ -74,14 +74,17 @@ class ResetPasswordViewModel @Inject constructor(
         val passwordError = Validators.password(s.password)
         val confirmError = Validators.confirmPassword(s.confirmPassword, s.password)
 
+        val firstError = currentError ?: passwordError ?: confirmError
+
         _uiState.update {
             it.copy(
                 currentPasswordError = currentError,
                 passwordError = passwordError,
                 confirmPasswordError = confirmError,
+                message = firstError?.let { msg -> UiMessage.error(msg) },
             )
         }
-        if (currentError != null || passwordError != null || confirmError != null) return
+        if (firstError != null) return
 
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }

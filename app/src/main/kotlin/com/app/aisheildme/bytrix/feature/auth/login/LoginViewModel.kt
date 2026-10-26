@@ -73,7 +73,12 @@ class LoginViewModel @Inject constructor(
     fun onContinue() {
         val state = _uiState.value
         if (state.isLoading) return
-        if (!validate(state)) return
+        if (!validate(state)) {
+            val updatedState = _uiState.value
+            val firstError = updatedState.emailError ?: updatedState.passwordError ?: "Please fill in all fields"
+            _uiState.update { it.copy(message = UiMessage.error(firstError)) }
+            return
+        }
 
         val email = state.email.trim()
         viewModelScope.launch {

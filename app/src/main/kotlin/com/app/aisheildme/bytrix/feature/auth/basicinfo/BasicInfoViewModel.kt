@@ -84,7 +84,13 @@ class BasicInfoViewModel @Inject constructor(
             Validators.required(s.state.trim(), "State")?.let { put(Field.State, it) }
             Validators.required(s.zipcode.trim(), "Zipcode")?.let { put(Field.Zipcode, it) }
         }
-        _uiState.update { it.copy(errors = errors) }
+        val firstError = errors.values.firstOrNull()
+        _uiState.update {
+            it.copy(
+                errors = errors,
+                message = firstError?.let { msg -> UiMessage.error(msg) },
+            )
+        }
         if (errors.isNotEmpty()) return
 
         viewModelScope.launch {

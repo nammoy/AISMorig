@@ -23,10 +23,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.app.aisheildme.bytrix.R
 import com.app.aisheildme.bytrix.core.designsystem.AppColors
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.remember
+import com.app.aisheildme.bytrix.core.common.UiMessage
+import com.app.aisheildme.bytrix.core.designsystem.component.AppSnackbarHost
 import com.app.aisheildme.bytrix.core.designsystem.component.AuthBottomLink
 import com.app.aisheildme.bytrix.core.designsystem.component.AuthHeader
 import com.app.aisheildme.bytrix.core.designsystem.component.CustomButton
 import com.app.aisheildme.bytrix.core.designsystem.component.CustomTextField
+import com.app.aisheildme.bytrix.core.designsystem.component.MessageEffect
 
 @Composable
 fun SignupScreen(
@@ -35,12 +40,25 @@ fun SignupScreen(
     viewModel: SignupViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    MessageEffect(
+        message = state.message,
+        hostState = snackbarHostState,
+        onShown = viewModel::onMessageShown,
+    )
 
     Scaffold(
         modifier = Modifier.paint(
             painter = painterResource(R.drawable.bg_main),
             contentScale = ContentScale.Crop,
         ),
+        snackbarHost = {
+            AppSnackbarHost(
+                hostState = snackbarHostState,
+                isError = state.message?.type != UiMessage.Type.Success,
+            )
+        },
         containerColor = Color.Transparent,
     ) { padding ->
         Column(
@@ -107,7 +125,7 @@ fun SignupScreen(
                 CustomButton(
                     title = "Continue",
                     onClick = { viewModel.validateAndCollect()?.let(onContinue) },
-                    enabled = state.isValid,
+                    enabled = true,
                     height = 44.dp,
                 )
                 Spacer(Modifier.height(16.dp))

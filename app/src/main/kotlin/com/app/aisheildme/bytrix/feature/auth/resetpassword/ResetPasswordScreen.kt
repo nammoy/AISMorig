@@ -126,7 +126,7 @@ fun ResetPasswordScreen(
                 CustomButton(
                     title = "Continue",
                     onClick = viewModel::onContinue,
-                    enabled = state.isValid,
+                    enabled = true,
                     isLoading = state.isLoading,
                     height = 44.dp,
                 )
