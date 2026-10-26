@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AiShieldMe.Splash" parent="Theme.SplashScreen">
+    <style name="Theme.TwentyClaude.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/splash_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/Theme.AiShieldMe</item>
+        <item name="postSplashScreenTheme">@style/Theme.TwentyClaude</item>
     </style>
 
-    <style name="Theme.AiShieldMe" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.TwentyClaude" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>

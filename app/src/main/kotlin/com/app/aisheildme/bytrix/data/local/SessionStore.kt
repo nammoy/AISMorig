@@ -20,7 +20,7 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "aishieldme_session")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "twentyclaude_session")
 
 @Singleton
 class SessionStore @Inject constructor(
@@ -112,6 +112,6 @@ class SessionStore @Inject constructor(
     }
 
     private companion object {
-        const val TOKEN_KEY_ALIAS = "aishieldme.session.token"
+        const val TOKEN_KEY_ALIAS = "twentyclaude.session.token"
     }
 }

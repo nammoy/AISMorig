@@ -68,6 +68,6 @@ class AppMessagingService : FirebaseMessagingService() {
     }
 
     private companion object {
-        const val CHANNEL_ID = "aisheildme_general"
+        const val CHANNEL_ID = "twentyclaude_general"
     }
 }

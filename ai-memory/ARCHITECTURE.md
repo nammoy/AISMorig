@@ -55,4 +55,4 @@ with "outcome unknown": status is checked by idempotency key, never re-sent.
 ## DI
 `di/NetworkModule`, `di/DataModule` (existing), `di/VaultModule` (encrypted DB + DAOs),
 `di/NegotiatorModule` (binds `RequestExecutor` → `VendorInteractionManager`).
-`AiShieldMeApp` starts `TransactionTracker` lazily on `Dispatchers.IO`.
+`TwentyClaudeApp` starts `TransactionTracker` lazily on `Dispatchers.IO`.

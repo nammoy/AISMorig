@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltAndroidApp
-class AiShieldMeApp : Application() {
+class TwentyClaudeApp : Application() {
 
     /** Lazy so the encrypted vault is opened off the main thread, not during Application.onCreate. */
     @Inject

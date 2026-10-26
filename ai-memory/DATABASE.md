@@ -5,7 +5,7 @@
 - **File:** `checkin_history.db` (name kept from v1 so existing data is preserved).
 - **Encryption:** SQLCipher (`net.zetetic:sqlcipher-android:4.6.1`) via `SupportOpenHelperFactory`.
   Passphrase = 32 random bytes (hex), sealed with an AndroidKeyStore AES-256-GCM key
-  (`aishieldme.vault.db`) and stored in private prefs `aishieldme_vault_keys`. On first launch the old
+  (`twentyclaude.vault.db`) and stored in private prefs `twentyclaude_vault_keys`. On first launch the old
   plaintext file is converted in place with `sqlcipher_export` (`DatabaseEncryption`); on failure
   the original is left untouched and the error propagates.
 - **Integrity:** `PRAGMA foreign_keys = ON` on every open (`VaultModule.ForeignKeysOn`).

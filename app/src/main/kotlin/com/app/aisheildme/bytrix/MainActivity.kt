@@ -10,7 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
-import com.app.aisheildme.bytrix.core.designsystem.AiShieldMeTheme
+import com.app.aisheildme.bytrix.core.designsystem.TwentyClaudeTheme
 import com.app.aisheildme.bytrix.navigation.AppNavHost
 import com.app.aisheildme.bytrix.core.common.DetailHandoff
 import com.app.aisheildme.bytrix.core.util.FileOpener
@@ -40,7 +40,7 @@ class MainActivity : FragmentActivity() {
         }
 
         setContent {
-            AiShieldMeTheme {
+            TwentyClaudeTheme {
                 AppNavHost(handoff = detailHandoff, fileOpener = fileOpener)
             }
         }

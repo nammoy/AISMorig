@@ -1,4 +1,4 @@
-# AI-ShieldMe — Android app
+# 20Claude — Android app
 
 Native Android app (Kotlin + Jetpack Compose). This guide explains how to build
 and run it on your own computer.
@@ -45,7 +45,7 @@ cp local.properties.example local.properties
 
 ```properties
 sdk.dir=/path/to/Android/sdk
-AISHIELD_APP_TOKEN=<app token from the backend team>
+TWENTYCLAUDE_APP_TOKEN=<app token from the backend team>
 ```
 
 `sdk.dir` is the Android SDK location. Typical paths:
@@ -130,6 +130,6 @@ You can also copy the debug APK to a phone and install it directly (allow
 | `File google-services.json is missing` | Put the file in `app/`. |
 | `Unsupported class file major version` / Java errors | Gradle must use JDK 17: Android Studio → *Settings › Build, Execution, Deployment › Build Tools › Gradle › Gradle JDK* → choose the bundled JDK 17+. |
 | `JAVA_HOME is not set` (command line) | Set `JAVA_HOME` as in section 5. |
-| Login / API calls fail | `AISHIELD_APP_TOKEN` is empty or wrong in `local.properties`. Rebuild after changing it. |
+| Login / API calls fail | `TWENTYCLAUDE_APP_TOKEN` is empty or wrong in `local.properties`. Rebuild after changing it. |
 | Build stuck or odd errors after pulling changes | **File › Invalidate Caches / Restart**, or run `./gradlew clean`. |
 | Device not listed | Re-plug the cable, accept the USB-debugging prompt, run `adb devices`. |

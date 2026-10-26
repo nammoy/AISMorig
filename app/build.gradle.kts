@@ -37,7 +37,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BASE_URL", "\"https://aishield.facevitals.ai/\"")
-        buildConfigField("String", "APP_TOKEN", "\"${secret("AISHIELD_APP_TOKEN")}\"")
+        buildConfigField("String", "APP_TOKEN", "\"${secret("TWENTYCLAUDE_APP_TOKEN", secret("AISHIELD_APP_TOKEN"))}\"")
     }
 
     buildTypes {

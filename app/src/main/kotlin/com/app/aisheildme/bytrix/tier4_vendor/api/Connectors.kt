@@ -186,8 +186,8 @@ class ManualProcessConnector @Inject constructor() : VendorConnector {
 class VendorCredentialStore @Inject constructor(
     @param:dagger.hilt.android.qualifiers.ApplicationContext private val context: android.content.Context,
 ) {
-    private val prefs get() = context.getSharedPreferences("aishieldme_vendor_credentials", android.content.Context.MODE_PRIVATE)
-    private val cipher by lazy { com.app.aisheildme.bytrix.tier2_vault.security.KeystoreCipher("aishieldme.vendor.credentials") }
+    private val prefs get() = context.getSharedPreferences("twentyclaude_vendor_credentials", android.content.Context.MODE_PRIVATE)
+    private val cipher by lazy { com.app.aisheildme.bytrix.tier2_vault.security.KeystoreCipher("twentyclaude.vendor.credentials") }
 
     fun token(alias: String): String? = prefs.getString(alias, null)?.let { sealed ->
         runCatching { String(cipher.decrypt(sealed), Charsets.UTF_8) }.getOrNull()

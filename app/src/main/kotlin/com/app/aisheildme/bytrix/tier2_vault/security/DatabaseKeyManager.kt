@@ -33,8 +33,8 @@ class DatabaseKeyManager @Inject constructor(
     }
 
     private companion object {
-        const val PREFS = "aishieldme_vault_keys"
+        const val PREFS = "twentyclaude_vault_keys"
         const val PREF_SEALED = "db_passphrase_sealed"
-        const val KEY_ALIAS = "aishieldme.vault.db"
+        const val KEY_ALIAS = "twentyclaude.vault.db"
     }
 }

@@ -28,7 +28,7 @@ private val LightColors = lightColorScheme(
 )
 
 @Composable
-fun AiShieldMeTheme(
+fun TwentyClaudeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
